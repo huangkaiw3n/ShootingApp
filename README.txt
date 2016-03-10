@@ -1,0 +1,9 @@
+The objective of this assignment is to be able to allow the phone to detect the shooting direction and region correctly. In order to do that, we will need to obtain the phone's orientation. The orientation of the phone comes in an array of size 3, with arr[0], arr[1] and arr[2] holding values of azimuth, pitch and roll respectively. The rotation around the Z axis i.e. the shooting direction, is obtained from the azimuth.
+
+In order to get the orientation, we will need to call the method "getOrientation()". This method requires the rotation matrix. To obtain the rotation matrix, we will need to call the method getRotationMatrix() by using sensor values from sensors with type "TYPE_ACCELEROMETER" and "TYPE_MAGNETIC_FIELD".
+
+The values gotten from a sensor of "TYPE_ACCELEROMETER" is the sum of the values gotten from sensors of "TYPE_LINEAR_ACCELERATION" and "TYPE_GRAVITY". As we are already sensing from both of these sensors, we could easily get acceleration values by storing the latest values of linear acceleration and gravity. This is done by defining new class members "gravityForCompass" and "linearAccForCompass". These 2 arrays of type Float are updated in the "processGravityValues(SensorEvent)" and "processAcclValues(SensorEvent)" methods.
+
+We use the sensor of type "TYPE_MAGNETIC_FIELD" to sense for changes in magnetic readings and call the method "detectShootingDirectionAndRegion(SensorEvent)" (line 208).
+
+In the method "detectShootingDirectionAndRegion(SensorEvent)", we would obtain the orientation values (line 324) after obtaining the acceleration values (line 319-321) and the rotation matrix. We will then convert the azimuth values from radians to degrees. As the default values are from -180 degrees to +180 degrees, we add an additional 180 degrees to the raw values so that the values will range from 0-360 degrees. We then assign the shooting region based the range of values the shooting degree is in.

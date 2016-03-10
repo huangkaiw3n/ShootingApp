@@ -208,7 +208,7 @@ public class ShootingAppActivity
         }
 
         // PA3: Detect the shooting direction and region.
-        //  Think about what sensor or sensors on the phone can 
+        //  Think about what sensor or sensors on the phone can
         //  help you do this.
         //detectShootingDirectionAndRegion( event );
     }
